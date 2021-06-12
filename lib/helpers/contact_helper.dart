@@ -33,15 +33,15 @@ class ContactHelper {
 
   Future<Database>initDb() async {
     final databasePath = await getDatabasesPath();
-    final path = join(databasePath, "contacts.db");
+    final path = join(databasePath, "newContacts.db");
 
     return await openDatabase(path, version: 1,
         onCreate: (Database db, int newerVersion) async {
       await db.execute(
           "CREATE TABLE $contactTable($idColumn INTEGER PRIMARY KEY, "
               "$nameColumn TEXT, "
-              "$emailColumn TEXT"
-              "$phoneColumn TEXT"
+              "$emailColumn TEXT,"
+              "$phoneColumn TEXT,"
               "$imgColumn TEXT)");
     });
   }
@@ -104,6 +104,8 @@ class Contact {
   String email;
   String phone;
 
+  Contact();
+
   //string pq vai ser o local onde a imagem foi armazenada
   String img;
 
@@ -119,12 +121,12 @@ class Contact {
   //pega o contato e coloca num Map
   Map toMap() {
     Map<String, dynamic> map = {
-      nameColumn = name,
-      emailColumn = email,
-      phoneColumn = phone,
-      imgColumn = img,
-    } as Map<String, dynamic>;
-    if (id != null) {
+      nameColumn: name,
+      emailColumn: email,
+      phoneColumn: phone,
+      imgColumn: img
+    };
+    if(id != null){
       map[idColumn] = id;
     }
     return map;
