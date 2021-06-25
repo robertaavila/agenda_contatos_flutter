@@ -76,7 +76,7 @@ class _ContactPageState extends State<ContactPage> {
                     image: DecorationImage(
                         image: _editedContact.img != null ?
                         FileImage(File(_editedContact.img)) :
-                        AssetImage("images/user.png"),
+                        AssetImage("images/person.png"),
                         fit: BoxFit.cover
                     ),
                   ),
@@ -129,27 +129,27 @@ class _ContactPageState extends State<ContactPage> {
   Future<bool> _requestPop(){
     if(_userEdited){
       showDialog(context: context,
-          builder: (context){
-            return AlertDialog(
-              title: Text("Descartar Alterações?"),
-              content: Text("Se sair as alterações serão perdidas."),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text("Cancelar"),
-                  onPressed: (){
-                    Navigator.pop(context);
-                  },
-                ),
-                FlatButton(
-                  child: Text("Sim"),
-                  onPressed: (){
-                    Navigator.pop(context);
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
-            );
-          }
+        builder: (context){
+          return AlertDialog(
+            title: Text("Descartar Alterações?"),
+            content: Text("Se sair as alterações serão perdidas."),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Cancelar"),
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+              ),
+              FlatButton(
+                child: Text("Sim"),
+                onPressed: (){
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        }
       );
       return Future.value(false);
     } else {

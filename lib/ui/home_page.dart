@@ -50,11 +50,11 @@ class _HomePageState extends State<HomePage> {
       ),
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          _showContactPage();
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.red,
+          onPressed: (){
+            _showContactPage();
+          },
+          child: Icon(Icons.add),
+          backgroundColor: Colors.red,
       ),
       body: ListView.builder(
           padding: EdgeInsets.all(10.0),
@@ -70,53 +70,48 @@ class _HomePageState extends State<HomePage> {
     return GestureDetector(
       child: Card(
         child: Padding(
-          padding: EdgeInsets.all(10.0),
-          child: Row(
-            children: <Widget>[
-              Container(
-                width: 80.0,
-                height: 80.0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: contacts[index].img != null ?
-                      FileImage(File(contacts[index].img)) :
-                      AssetImage("images/user.png"),
-                      fit: BoxFit.cover
+            padding: EdgeInsets.all(10.0),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  width: 80.0,
+                  height: 80.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image: contacts[index].img != null ?
+                          FileImage(File(contacts[index].img)) :
+                            AssetImage("images/person.png"),
+                        fit: BoxFit.cover
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(contacts[index].name ?? "",
-                      style: TextStyle(fontSize: 22.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(contacts[index].email ?? "",
-                      style: TextStyle(fontSize: 18.0),
-                    ),
-                    Text(contacts[index].phone ?? "",
-                      style: TextStyle(fontSize: 18.0),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
+                Padding(
+                  padding: EdgeInsets.only(left: 10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(contacts[index].name ?? "",
+                        style: TextStyle(fontSize: 22.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(contacts[index].email ?? "",
+                        style: TextStyle(fontSize: 18.0),
+                      ),
+                      Text(contacts[index].phone ?? "",
+                        style: TextStyle(fontSize: 18.0),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
         ),
       ),
       onTap: (){
         _showOptions(context, index);
       },
     );
-    void _showContactpage({Contact contact}) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => ContactPage(contact: contact,))
-      );
-    }
   }
 
   void _showOptions(BuildContext context, int index){
@@ -181,7 +176,7 @@ class _HomePageState extends State<HomePage> {
 
   void _showContactPage({Contact contact}) async {
     final recContact = await Navigator.push(context,
-        MaterialPageRoute(builder: (context) => ContactPage(contact: contact,))
+      MaterialPageRoute(builder: (context) => ContactPage(contact: contact,))
     );
     if(recContact != null){
       if(contact != null){
@@ -218,4 +213,5 @@ class _HomePageState extends State<HomePage> {
 
     });
   }
+
 }
